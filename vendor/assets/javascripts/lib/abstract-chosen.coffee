@@ -32,6 +32,7 @@ class AbstractChosen
     @display_selected_options = if @options.display_selected_options? then @options.display_selected_options else true
     @display_disabled_options = if @options.display_disabled_options? then @options.display_disabled_options else true
     @include_group_label_in_selected = @options.include_group_label_in_selected || false
+    @chosen_choices_container = if @options.chosen_choices_container? then @options.chosen_choices_container else null
 
   set_default_text: ->
     if @form_field.getAttribute("data-placeholder")

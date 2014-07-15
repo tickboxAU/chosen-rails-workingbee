@@ -300,7 +300,10 @@ class Chosen extends AbstractChosen
       close_link.bind 'click.chosen', (evt) => this.choice_destroy_link_click(evt)
       choice.append close_link
 
-    @search_container.before  choice
+    if @chosen_choices_container
+      @chosen_choices_container.append choice
+    else
+      @search_container.before  choice
 
   choice_destroy_link_click: (evt) ->
     evt.preventDefault()
