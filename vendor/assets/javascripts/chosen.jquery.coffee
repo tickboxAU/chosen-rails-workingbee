@@ -40,7 +40,10 @@ class Chosen extends AbstractChosen
     @container = ($ "<div />", container_props)
 
     if @is_multiple
-      @container.html '<ul class="chosen-choices"><li class="search-field"><input type="text" value="' + @default_text + '" class="default" autocomplete="off" style="width:25px;" /></li></ul><div class="chosen-drop"><ul class="chosen-results"></ul></div>'
+      if @chosen_choices_container
+        @container.html '<ul class="chosen-choices"><li class="search-field"><input type="text" placeholder="' + @default_text + '" class="default" autocomplete="off" style="width:100%;" /></li></ul><div class="chosen-drop"><ul class="chosen-results"></ul></div>'
+      else
+        @container.html '<ul class="chosen-choices"><li class="search-field"><input type="text" value="' + @default_text + '" class="default" autocomplete="off" style="width:25px;" /></li></ul><div class="chosen-drop"><ul class="chosen-results"></ul></div>'
     else
       @container.html '<a class="chosen-single chosen-default" tabindex="-1"><span>' + @default_text + '</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off" /></div><ul class="chosen-results"></ul></div>'
 
@@ -478,7 +481,7 @@ class Chosen extends AbstractChosen
         break
 
   search_field_scale: ->
-    if @is_multiple
+    if @is_multiple && !@chosen_choices_container?
       h = 0
       w = 0
 
